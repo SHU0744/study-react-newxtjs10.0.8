@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>TOPページ</title>
+        <title>TOPページです。</title>
       </Head>
       <Header />
       <Main page={"index"} />
