@@ -7,11 +7,24 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const [isShow, setIsShow] = useState(true);
   const handleClick = useCallback(() => {
     if (count < 10) {
       setCount((prev) => prev + 1);
     }
   }, [count]);
+
+  const onChangeInput = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert("5文字以内にしてください");
+      return;
+    }
+    setText(e.target.value);
+  }, []);
+  const onClickShow = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
   useEffect(() => {
     // console.log("マウント時");
     // console.log(count);
@@ -28,8 +41,10 @@ export default function Home() {
         <title>TOPページ</title>
       </Head>
       <Header />
-      <h1>{count}</h1>
+      <button onClick={onClickShow}>{isShow ? "非表示" : "表示"}</button>
+      {isShow ? <h1>{count}</h1> : ""}
       <button onClick={handleClick}>クリック</button>
+      <input type="text" value={text} onChange={onChangeInput} />
       <Main page={"index"} />
       <Footer />
     </div>
