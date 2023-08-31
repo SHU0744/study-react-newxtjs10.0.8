@@ -9,9 +9,10 @@ export default function Home() {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
   const [isShow, setIsShow] = useState(true);
+  const [array, setArray] = useState([]);
   const handleClick = useCallback(() => {
     if (count < 10) {
-      setCount((prev) => prev + 1);
+      setCount((prevCount) => prevCount + 1);
     }
   }, [count]);
 
@@ -22,8 +23,19 @@ export default function Home() {
     }
     setText(e.target.value);
   }, []);
+
+  const onClickAdd = useCallback(() => {
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert("同じ要素がありますので異なるものを入力");
+        return prevArray;
+      }
+      const newArray = [...prevArray, text];
+      return newArray;
+    });
+  }, [text]);
   const onClickShow = useCallback(() => {
-    setIsShow((isShow) => !isShow);
+    setIsShow((previsShow) => !previsShow);
   }, []);
   useEffect(() => {
     // console.log("マウント時");
@@ -43,8 +55,14 @@ export default function Home() {
       <Header />
       <button onClick={onClickShow}>{isShow ? "非表示" : "表示"}</button>
       {isShow ? <h1>{count}</h1> : ""}
-      <button onClick={handleClick}>クリック</button>
+      <button onClick={handleClick}>カウントアップ</button>
       <input type="text" value={text} onChange={onChangeInput} />
+      <button onClick={onClickAdd}>追加</button>
+      <ul>
+        {array.map((item) => {
+          return <li key={item}>{item}</li>;
+        })}
+      </ul>
       <Main page={"index"} />
       <Footer />
     </div>
