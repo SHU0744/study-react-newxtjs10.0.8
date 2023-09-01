@@ -3,50 +3,15 @@ import styles from "src/styles/Home.module.css";
 import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 import { Footer } from "src/components/Footer";
-import { useCallback, useEffect, useState } from "react";
+import { useCounter } from "src/hooks/useCounter";
+import { useInputAdd } from "src/hooks/useInputAdd";
+import { useBgRed } from "src/hooks/useBgRed";
 
 export default function Home() {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("");
-  const [isShow, setIsShow] = useState(true);
-  const [array, setArray] = useState([]);
-  const handleClick = useCallback(() => {
-    if (count < 10) {
-      setCount((prevCount) => prevCount + 1);
-    }
-  }, [count]);
+  const { count, isShow, handleClick, onClickShow } = useCounter();
+  const { text, array, onChangeInput, onClickAdd } = useInputAdd();
+  useBgRed(count);
 
-  const onChangeInput = useCallback((e) => {
-    if (e.target.value.length > 5) {
-      alert("5文字以内にしてください");
-      return;
-    }
-    setText(e.target.value);
-  }, []);
-
-  const onClickAdd = useCallback(() => {
-    setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
-        alert("同じ要素がありますので異なるものを入力");
-        return prevArray;
-      }
-      const newArray = [...prevArray, text];
-      return newArray;
-    });
-  }, [text]);
-  const onClickShow = useCallback(() => {
-    setIsShow((previsShow) => !previsShow);
-  }, []);
-  useEffect(() => {
-    // console.log("マウント時");
-    // console.log(count);
-    document.body.style.backgroundColor = "red";
-    return () => {
-      // console.log("アンマウント時");
-      // console.log(count);
-      document.body.style.backgroundColor = "";
-    };
-  }, [count]);
   return (
     <div className={styles.container}>
       <Head>
