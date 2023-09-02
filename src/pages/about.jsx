@@ -5,7 +5,7 @@ import { Header } from "src/components/Header";
 import { Footer } from "src/components/Footer";
 
 export default function Home({
-  count,
+  doubleCount,
   isShow,
   handleClick,
   onClickShow,
@@ -21,7 +21,7 @@ export default function Home({
       </Head>
       <Header />
       <button onClick={onClickShow}>{isShow ? "非表示" : "表示"}</button>
-      {isShow ? <h1>{count}</h1> : ""}
+      {isShow ? <h1>{doubleCount}</h1> : ""}
       <button onClick={handleClick}>カウントアップ</button>
       <input type="text" value={text} onChange={onChangeInput} />
       <button onClick={onClickAdd}>追加</button>
