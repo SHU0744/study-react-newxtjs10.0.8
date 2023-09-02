@@ -1,5 +1,5 @@
 import styles from "src/components/Headline/Headline.module.css";
-export function Headline(props) {
+export const Headline = (props) => {
   const { page, handlePop, children } = props;
   return (
     <div>
@@ -8,4 +8,4 @@ export function Headline(props) {
       <button onClick={handlePop}>リンク減らす</button>
     </div>
   );
-}
+};

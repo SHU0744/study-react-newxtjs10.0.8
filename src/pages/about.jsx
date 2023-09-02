@@ -4,16 +4,17 @@ import { Main } from "src/components/Main";
 import { Header } from "src/components/Header";
 import { Footer } from "src/components/Footer";
 
-export default function Home({
-  doubleCount,
-  isShow,
-  handleClick,
-  onClickShow,
-  text,
-  array,
-  onChangeInput,
-  onClickAdd,
-}) {
+const About = (props) => {
+  const {
+    doubleCount,
+    isShow,
+    handleClick,
+    onClickShow,
+    text,
+    array,
+    onChangeInput,
+    onClickAdd,
+  } = props;
   return (
     <div className={styles.container}>
       <Head>
@@ -34,4 +35,6 @@ export default function Home({
       <Footer />
     </div>
   );
-}
+};
+
+export default About;

@@ -26,7 +26,7 @@ const ITEMS = [
   },
 ];
 
-export function Main(props) {
+export const Main = (props) => {
   const { page } = props;
   const [items, setItems] = useState(ITEMS);
 
@@ -43,4 +43,4 @@ export function Main(props) {
       <Links items={items} />
     </main>
   );
-}
+};

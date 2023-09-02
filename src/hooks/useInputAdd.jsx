@@ -12,7 +12,7 @@ export const useInputAdd = () => {
 
   const onClickAdd = useCallback(() => {
     setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
+      if (prevArray.includes(text)) {
         alert("同じ要素がありますので異なるものを入力");
         return prevArray;
       }
