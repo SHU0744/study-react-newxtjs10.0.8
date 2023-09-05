@@ -1,9 +1,33 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer } from "react";
+
+const inishalState = {
+  data: [],
+  loading: true,
+  error: null,
+};
+const reducer = (prevState, { type, data, error }) => {
+  switch (type) {
+    case "end":
+      return {
+        ...prevState,
+        data: data,
+        loading: false,
+      };
+
+    case "error":
+      return {
+        ...prevState,
+        loading: false,
+        error: error,
+      };
+
+    default:
+      throw new Error("error");
+  }
+};
 
 export const Posts = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(reducer, inishalState);
   const getPosts = useCallback(async () => {
     try {
       const res = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -11,29 +35,28 @@ export const Posts = () => {
         throw new Error("エラーが発生したため、データの取得に失敗しました");
       }
       const json = await res.json();
-      setPosts(json);
+      dispatch({ type: "end", data: json });
     } catch (error) {
-      setError(error);
+      dispatch({ type: "error", error: error });
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  if (loading) {
+  if (state.loading) {
     return <div>ローディング中</div>;
   }
-  if (error) {
-    return <div>{error.message}</div>;
+  if (state.error) {
+    return <div>{state.error.message}</div>;
   }
-  if (posts.length === 0) {
+  if (state.data.length === 0) {
     return <div>データが空です。</div>;
   }
   return (
     <ol>
-      {posts.map((post) => {
+      {state.data.map((post) => {
         return <li key={post.id}>{post.title}</li>;
       })}
     </ol>
