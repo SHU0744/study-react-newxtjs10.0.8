@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 export const useBgColor = () => {
   const router = useRouter();
   const Bgcolor = useMemo(() => {
-    return router.pathname === "/" ? "red" : "blue";
+    return router.pathname === "/about" ? "red" : "";
   }, [router.pathname]);
 
   useEffect(() => {
