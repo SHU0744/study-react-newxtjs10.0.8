@@ -4,6 +4,8 @@ import styles from "src/components/Header/Header.module.css";
 const NAV_ITEMS = [
   { href: "/", lavel: "index" },
   { href: "/posts", lavel: "posts" },
+  { href: "/users", lavel: "users" },
+  { href: "/comments", lavel: "comments" },
 ];
 
 export const Header = () => {
