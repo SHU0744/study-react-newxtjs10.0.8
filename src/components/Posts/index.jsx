@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { usePosts } from "src/hooks/usePosts";
+import { usePosts } from "src/hooks/useFecthArray";
 
 export const Posts = () => {
   const { data, error, isLoading, isEmpty } = usePosts();
