@@ -1,10 +1,12 @@
 import Head from "next/dist/next-server/lib/head";
+import { CommentsByPostId } from "src/components/Comments/commentsBypostId";
+import { UserByUserId } from "src/components/User/UserByUserId";
 import { usePost } from "src/hooks/usePost";
 
 export const Post = () => {
-  const { post, user, error, isLoading } = usePost();
+  const { data, error, isLoading } = usePost();
 
-  if (!isLoading) {
+  if (isLoading) {
     return <div>ローディング中</div>;
   }
   if (error) {
@@ -14,13 +16,14 @@ export const Post = () => {
   return (
     <div>
       <Head>
-        <title>{post?.title}</title>
+        <title>{data?.title}</title>
       </Head>
       <div>
-        <h3>{post?.title}</h3>
-        <p>{post?.body}</p>
+        <h3>{data?.title}</h3>
+        <p>{data?.body}</p>
       </div>
-      <div>{user?.name ? <div>by {user.name}</div> : null}</div>
+      <UserByUserId id={data?.userId} />
+      <CommentsByPostId id={data?.id} />
     </div>
   );
 };
