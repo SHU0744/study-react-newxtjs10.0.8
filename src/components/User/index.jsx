@@ -1,4 +1,5 @@
 import Head from "next/dist/next-server/lib/head";
+import { PostbyUserId } from "src/components/Post/PostbyUserId";
 import { useUser } from "src/hooks/useUser";
 
 export const User = () => {
@@ -20,6 +21,8 @@ export const User = () => {
         <h3>{user?.name}</h3>
         <p>{user?.email}</p>
       </div>
+      <p>投稿記事</p>
+      <PostbyUserId id={user?.id} />
     </div>
   );
 };
