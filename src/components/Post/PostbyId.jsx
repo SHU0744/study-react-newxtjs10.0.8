@@ -6,8 +6,12 @@ export const PostbyId = (props) => {
   if (isLoading) {
     return <div>ローディング中</div>;
   }
+  if (!data) {
+    return <div>ローディング中</div>;
+  }
   if (error) {
     return <div>{error.message}</div>;
   }
+
   return <Link href={`/posts/${data?.id}`}>{data?.title}</Link>;
 };

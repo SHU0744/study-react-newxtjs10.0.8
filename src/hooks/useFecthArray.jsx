@@ -27,3 +27,7 @@ export const useCommentsByPostId = (id) => {
 export const usePostsByUserId = (id) => {
   return useFecthArray(id ? `${API_URL}/posts?userId=${id}` : null);
 };
+
+export const usePostsById = (id) => {
+  return useFecthArray(id ? `${API_URL}/posts?id=${id}` : null);
+};

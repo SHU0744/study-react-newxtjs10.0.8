@@ -3,7 +3,7 @@ import { PostbyId } from "src/components/Post/PostbyId";
 import { useComment } from "src/hooks/useComment";
 
 export const Comment = () => {
-  const { comment, error, isLoading } = useComment();
+  const { data, error, isLoading } = useComment();
 
   if (isLoading) {
     return <div>ローディング中</div>;
@@ -15,14 +15,14 @@ export const Comment = () => {
   return (
     <div>
       <Head>
-        <title>{comment?.name}</title>
+        <title>{data?.name}</title>
       </Head>
       <div>
-        <h3>{comment?.name}</h3>
-        <p>{comment?.body}</p>
+        <h3>{data?.name}</h3>
+        <p>{data?.body}</p>
       </div>
       <p>元の記事</p>
-      <PostbyId id={comment?.postId} />
+      <PostbyId id={data?.postId} />
     </div>
   );
 };
