@@ -13,5 +13,5 @@ export const UserByUserId = (props) => {
     return <div>{error.message}</div>;
   }
 
-  return <div>by {data?.name}</div>;
+  return <div className="mt-6 text-xl">by {data?.name}</div>;
 };

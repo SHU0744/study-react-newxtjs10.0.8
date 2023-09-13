@@ -16,7 +16,7 @@ export const CommentsByPostId = (props) => {
     <ol>
       {data?.map((comment) => {
         return (
-          <li key={comment.id}>
+          <li key={comment.id} className="hover:text-blue-300">
             <Link href={`/comments/${comment.id}`}>{comment.body}</Link>
           </li>
         );

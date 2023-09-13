@@ -20,8 +20,8 @@ export const Post = () => {
       <Head>
         <title>{data?.title}</title>
       </Head>
-      <div>
-        <h3>{data?.title}</h3>
+      <div className="mt-10">
+        <h3 className="text-2xl font-bold">{data?.title}</h3>
         <p>{data?.body}</p>
       </div>
       <UserByUserId id={data?.userId} />

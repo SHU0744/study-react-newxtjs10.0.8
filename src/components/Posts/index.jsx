@@ -14,10 +14,10 @@ export const Posts = () => {
     return <div>データが空です。</div>;
   }
   return (
-    <ol>
+    <ol className="space-y-4">
       {data.map((post) => {
         return (
-          <li key={post.id}>
+          <li key={post.id} className="hover:text-blue-300">
             <Link href={`/posts/${post.id}`}>{post.title}</Link>
           </li>
         );
