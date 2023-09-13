@@ -16,7 +16,7 @@ export const Users = () => {
     <ol>
       {data.map((user) => {
         return (
-          <li key={user.id}>
+          <li key={user.id} className="hover:text-blue-300">
             <Link href={`/users/${user.id}`}>{user.name}</Link>
           </li>
         );
