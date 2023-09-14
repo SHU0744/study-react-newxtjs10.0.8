@@ -5,9 +5,9 @@ import { SWRConfig } from "swr";
 
 export const getServerSideProps = async () => {
   const USERS_API_URL = `https://jsonplaceholder.typicode.com/users`;
+  console.log("SSRページ");
   const users = await fetch(USERS_API_URL);
   const usersData = await users.json();
-
   return {
     props: {
       fallback: {
