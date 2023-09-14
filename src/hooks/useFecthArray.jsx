@@ -1,7 +1,7 @@
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 const useFecthArray = (url) => {
-  const { data, error, isLoading } = useSWR(url);
+  const { data, error, isLoading } = useSWRImmutable(url);
 
   return { data, error, isLoading, isEmpty: data && data.length === 0 };
 };
