@@ -1,3 +1,4 @@
+import { API_URL } from "src/utils/const";
 import useSWRImmutable from "swr/immutable";
 
 const useFecthArray = (url) => {
@@ -6,7 +7,6 @@ const useFecthArray = (url) => {
   return { data, error, isLoading, isEmpty: data && data.length === 0 };
 };
 
-const API_URL = "https://jsonplaceholder.typicode.com";
 export const usePosts = () => {
   return useFecthArray(`${API_URL}/posts`);
 };
@@ -29,4 +29,8 @@ export const usePostsByUserId = (id) => {
 
 export const usePostsById = (id) => {
   return useFecthArray(id ? `${API_URL}/posts?id=${id}` : null);
+};
+
+export const useCommentsById = (id) => {
+  return useFecthArray(id ? `${API_URL}/comments?id=${id}` : null);
 };

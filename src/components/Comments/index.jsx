@@ -17,7 +17,9 @@ export const Comments = () => {
       {data.map((comment) => {
         return (
           <li key={comment.id}>
-            <Link href={`/comments/${comment.id}`}>{comment.body}</Link>
+            <Link href={`/comments/${comment.id}`} prefetch={true}>
+              {comment.body}
+            </Link>
           </li>
         );
       })}
