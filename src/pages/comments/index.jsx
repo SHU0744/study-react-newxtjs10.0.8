@@ -5,7 +5,7 @@ import { SWRConfig } from "swr";
 
 export const getStaticProps = async () => {
   const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments`;
-  console.log("SSGページ");
+  // console.log("SSGページ");
   const comments = await fetch(COMMENTS_API_URL);
   const commentsData = await comments.json();
 
